@@ -1,1 +1,1 @@
-qemu-system-x86_64 -fda build/boot.bin
+qemu-system-x86_64 -fda build/main_floppy.iso
