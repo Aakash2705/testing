@@ -12,6 +12,7 @@ floppy_image: $(BUILD_DIR)/main_floppy.iso
 $(BUILD_DIR)/main_floppy.iso: bootloader kernel
 	dd if=/dev/zero of=$(BUILD_DIR)/main_floppy.iso bs=512 count=2880
 	dd if=$(BUILD_DIR)/boot.bin of=$(BUILD_DIR)/main_floppy.iso conv=notrunc
+	mcopy -i $(BUILD_DIR)/main_floppy.iso $(BUILD_DIR)/kernel.bin "kernel.bin"
 
 #
 # Bootloader
