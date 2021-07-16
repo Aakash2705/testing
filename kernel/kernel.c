@@ -1,5 +1,4 @@
 void main() {
-	for(;;);
 	char* vid_mem = (char*) 0xb8000;
 	*vid_mem = 'X';
 	for(;;);

@@ -17,6 +17,7 @@ floppy_image: $(BUILD_DIR)/main_floppy.iso
 $(BUILD_DIR)/main_floppy.iso: bootloader kernel
 	dd if=/dev/zero of=$(BUILD_DIR)/main_floppy.iso bs=512 count=2880
 	dd if=$(BUILD_DIR)/boot.bin of=$(BUILD_DIR)/main_floppy.iso conv=notrunc
+	mcopy -i $(BUILD_DIR)/main_floppy.iso $(BUILD_DIR)/kernel.bin "kernel.bin"
 
 #
 # Bootloader
@@ -34,7 +35,6 @@ kernel: $(BUILD_DIR)/kernel.bin
 $(BUILD_DIR)/kernel.bin: always
 	$(CC) $(C_FLAGS) -c kernel/kernel.c -o $(BUILD_DIR)/kernel.o
 	$(LINK) -o $(BUILD_DIR)/kernel.bin -Ttext $(KERNEL_LOC) $(BUILD_DIR)/kernel.o  $(BINARY)
-	cat $(BUILD_DIR)/boot.bin $(BUILD_DIR)/kernel.bin > os-image
 #
 # Always
 #

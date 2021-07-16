@@ -1,4 +1,3 @@
-[bits 16]
 [org 0x7c00]
 
 KERNEL_OFFSET equ 0x1000
@@ -13,8 +12,9 @@ main:
 	call puts
 	call load_kernel
 	call switch_to_pm
-
-	jmp $
+	
+	cli
+	hlt
 
 
 %include "bootloader/screen.asm"
@@ -41,8 +41,8 @@ BEGIN_PM:
 	
 	call KERNEL_OFFSET
 
-
-	jmp $
+	cli
+	hlt
 
 ; global vars
 BOOT_DRIVE:		db 0
